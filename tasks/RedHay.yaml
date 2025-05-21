@@ -1,0 +1,18 @@
+---
+# RedHat tasks file for ansible-role-logstash
+
+- name: "Import Elastic's RPM Key"
+  rpm_key:
+    state: present
+    key: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+
+- name: "Add Elastic Repository file"
+  yum_repository:
+    name: elastic
+    description: Elastic repository for 9.x packages
+    file: elastic
+    baseurl: https://artifacts.elastic.co/packages/9.x/yum
+    gpgcheck: true
+    gpgkey: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    enabled: true
+
