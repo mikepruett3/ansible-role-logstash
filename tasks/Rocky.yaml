@@ -16,3 +16,16 @@
     gpgkey: https://artifacts.elastic.co/GPG-KEY-elasticsearch
     enabled: true
 
+- name: "Install the Logstash package (yum)"
+  yum:
+    name: "logstash"
+    state: present
+  when:
+    - ansible_facts['pkg_mgr'] == 'yum'
+
+- name: "Install the Logstash package (dnf)"
+  dnf:
+    name: "logstash"
+    state: present
+  when:
+    - ansible_facts['pkg_mgr'] == 'dnf'
