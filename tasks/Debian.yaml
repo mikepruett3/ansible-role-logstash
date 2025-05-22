@@ -1,0 +1,21 @@
+---
+# RedHat tasks file for ansible-role-logstash
+
+- name: "Import Elastic's APT Key"
+  apt_key:
+    url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    keyring: /usr/share/keyrings/elastic-keyring.gpg
+
+- name: "Add Elastic Repository file"
+  apt_repository:
+    repo: deb [signed-by=/usr/share/keyrings/elastic-keyring.gpg] https://artifacts.elastic.co/packages/9.x/apt stable main
+    state: present
+    filename: elastic.list
+
+- name: "Install the Logstash packages"
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - apt-transport-https
+    - logstash

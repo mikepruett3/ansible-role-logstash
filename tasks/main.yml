@@ -1,5 +1,6 @@
 ---
 # tasks file for ansible-role-logstash
 
-- name: "Import Distribution Prerequisites"
+- name: "Import Distribution Installer"
   include_tasks: "{{ ansible_facts['os_family'] }}.yaml"
+
