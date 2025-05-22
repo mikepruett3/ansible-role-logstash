@@ -29,3 +29,7 @@
     state: present
   when:
     - ansible_facts['pkg_mgr'] == 'dnf'
+
+- name: "Reboot after Install"
+  reboot:
+    reboot_timeout: 3600

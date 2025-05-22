@@ -14,8 +14,9 @@
 
 - name: "Install the Logstash packages"
   apt:
-    name: "{{ item }}"
+    name: ['apt-transport-https', 'logstash']
     state: present
-  with_items:
-    - apt-transport-https
-    - logstash
+
+- name: "Reboot after Install"
+  reboot:
+    reboot_timeout: 3600
