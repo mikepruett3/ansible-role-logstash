@@ -20,6 +20,7 @@
   yum:
     name: "logstash"
     state: present
+  register: install
   when:
     - ansible_facts['pkg_mgr'] == 'yum'
 
@@ -27,9 +28,12 @@
   dnf:
     name: "logstash"
     state: present
+  register: install
   when:
     - ansible_facts['pkg_mgr'] == 'dnf'
 
 - name: "Reboot after Install"
   reboot:
     reboot_timeout: 3600
+  when:
+    install.changed
