@@ -36,4 +36,4 @@
   reboot:
     reboot_timeout: 3600
   when:
-    install.changed
+    - install.changed
