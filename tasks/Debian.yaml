@@ -16,4 +16,3 @@
   apt:
     name: ['apt-transport-https', 'logstash']
     state: present
-  register: install
